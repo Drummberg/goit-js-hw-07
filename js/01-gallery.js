@@ -33,7 +33,6 @@ function onClickPreviewCard(event) {
     if (!classGalleryLink) {
         return;
     }
-   console.log(event.target.dataset.source);
     const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="800" height="600">
 `)
