@@ -14,8 +14,8 @@ function createGalleryCards(galleryItems) {
             <a class="gallery__link" href="${original}">
             <img
             class="gallery__image"
-            src="${preview}"
-            data-source="large-image.jpg"
+            src= "${preview}"
+            data-source="${original}"
             alt="${description}"
             />
             </a>
@@ -25,4 +25,19 @@ function createGalleryCards(galleryItems) {
        
 }
 
+galleryContainer.addEventListener('click', onClickPreviewCard);
 
+function onClickPreviewCard(event) {
+    event.preventDefault();
+    const classGalleryLink = event.target.classList.contains('gallery__image');
+    if (!classGalleryLink) {
+        return;
+    }
+   console.log(event.target.dataset.source);
+    const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" width="800" height="600">
+`)
+
+instance.show();
+}
+ 
