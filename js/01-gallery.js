@@ -41,16 +41,17 @@ function onClickPreviewCard(event) {
 `)
     
     instance.show();
-}
+
 
     function onCloseModal() {
         window.removeEventListener('keydown', onEscPress);
-        document.body.classList.remove('.basicLightbox');
+        instance.close();
     }
 
     function onEscPress(event) {
         console.log(event.code)
         if (event.code === 'Escape') {
-            onCloseModal();
+            return onCloseModal();
         }
     }
+}
