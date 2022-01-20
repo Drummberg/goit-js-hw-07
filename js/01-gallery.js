@@ -3,7 +3,6 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryContainer = document.querySelector('.gallery');
 const galleryCards = createGalleryCards(galleryItems);
-const divBasicLightbox = document.querySelector('.basicLightbox'); 
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryCards);
 
