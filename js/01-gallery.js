@@ -3,6 +3,7 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryContainer = document.querySelector('.gallery');
 const galleryCards = createGalleryCards(galleryItems);
+const divBasicLightbox = document.querySelector('.basicLightbox'); 
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryCards);
 
@@ -27,8 +28,10 @@ function createGalleryCards(galleryItems) {
 
 galleryContainer.addEventListener('click', onClickPreviewCard);
 
+
 function onClickPreviewCard(event) {
     event.preventDefault();
+    window.addEventListener('keydown', onEscPress);
     const classGalleryLink = event.target.classList.contains('gallery__image');
     if (!classGalleryLink) {
         return;
@@ -36,7 +39,18 @@ function onClickPreviewCard(event) {
     const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="800" height="600">
 `)
-
-instance.show();
+    
+    instance.show();
 }
- 
+
+    function onCloseModal() {
+        window.removeEventListener('keydown', onEscPress);
+        document.body.classList.remove('.basicLightbox');
+    }
+
+    function onEscPress(event) {
+        console.log(event.code)
+        if (event.code === 'Escape') {
+            onCloseModal();
+        }
+    }
